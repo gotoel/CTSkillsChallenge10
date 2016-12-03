@@ -75,7 +75,7 @@ function printLisTestGraph1()
 			barWidth = 40,
             barOffset = 50;
 			
-	for(var i = 0; i < 6; i++)
+	for(var i = parseInt(document.getElementById("a").innerHTML); i < parseInt(document.getElementById("b").innerHTML); i++)
 	{
 		chartdata.push(zipCodes[i].sbe / 100000);
 	}
