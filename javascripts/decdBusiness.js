@@ -1,31 +1,31 @@
 var zipCodes = new Array();
-pullSmallData();
+pulldecdData();
 
-function pullSmallData()
+function pulldecdData()
 {
 	$.ajax({
-    url: "https://data.ct.gov/resource/a8k4-9euq.json",
+    url: "https://data.ct.gov/resource/3xja-ddjg.json",
     type: "GET",
     data: {
       "$limit" : 5000,
       "$$app_token" : "Iv2KGLQsYwa3uRsBwl9HQbzHa"
     }
 	}).done(function(data) {
-	  compressSmallData( data );
+	  compressdecdData( data );
 	});
 }
 
-function compressSmallData(data)
+function compressdecdData(data)
 {
 	for (var business in data) {
 	  if (data.hasOwnProperty(business)) {
 		var val = data[business];
-		if(!containsSmallObject(val.zip_code))
+		if(!containsdecdObject(val.applicant_zip_code))
 		{
 			var zipCode = 
 			{
-				name: val.zip_code,
-			    sbe: parseInt(val.total_assistance)
+				name: val.applicant_zip_code,
+			    sbe: parseInt(val.total_tax_credits_issued)
 			};
 			//console.log(zipCode.name);
 			zipCodes.push(zipCode);
@@ -33,17 +33,17 @@ function compressSmallData(data)
 		else
 		{
 			console.log("added to zip");
-			zipCodes[getSmallZipIndex(val.zip_code)].sbe = parseInt(zipCodes[getSmallZipIndex(val.zip_code)].sbe) + parseInt(val.total_assistance);
+			zipCodes[getdecdZipIndex(val.applicant_zip_code)].sbe = parseInt(zipCodes[getdecdZipIndex(val.applicant_zip_code)].sbe) + parseInt(val.total_tax_credits_issued);
 		}
 		
 		//console.log(val.zip_code);
 	  }
 	}
 	
-	printSmallTestGraph1();
+	printdecdTestGraph1();
 }
 
-function containsSmallObject(obj) {
+function containsdecdObject(obj) {
     var i;
     for (i = 0; i < zipCodes.length; i++) {
 		//console.log(list[i].name);
@@ -55,7 +55,7 @@ function containsSmallObject(obj) {
     return false;
 }
 
-function getSmallZipIndex(zip)
+function getdecdZipIndex(zip)
 {
 	for (var i = 0; i < zipCodes.length; i++) {
 		if(zipCodes[i].name === zip)
@@ -65,9 +65,9 @@ function getSmallZipIndex(zip)
 	}
 }
 
-function printSmallTestGraph1()
+function printdecdTestGraph1()
 {
-	console.log("Printing small graph");
+	console.log("Printing decd graph");
 	var chartdata = new Array();
 
             var height = 500,
@@ -81,7 +81,7 @@ function printSmallTestGraph1()
 	}
 
   
-        d3.select('#bar-chart').append('svg')
+        d3.select('#bar-chart-decd').append('svg')
             .attr('width', width)
             .attr('height', height)
             .style('background', '#dff0d8')

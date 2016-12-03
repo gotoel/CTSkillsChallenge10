@@ -15,8 +15,6 @@ function printData(data)
 	  }
 	}
 	//document.getElementById("data").innerHTML = data;
-	console.log(data);
-	console.log(data[0].address);
 }
 
 function test()

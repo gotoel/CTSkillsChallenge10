@@ -1,31 +1,31 @@
 var zipCodes = new Array();
-pullSmallData();
+pullLisData();
 
-function pullSmallData()
+function pullLisData()
 {
 	$.ajax({
-    url: "https://data.ct.gov/resource/a8k4-9euq.json",
+    url: "https://data.ct.gov/resource/fxib-2xng.json",
     type: "GET",
     data: {
       "$limit" : 5000,
       "$$app_token" : "Iv2KGLQsYwa3uRsBwl9HQbzHa"
     }
 	}).done(function(data) {
-	  compressSmallData( data );
+	  compressLisData( data );
 	});
 }
 
-function compressSmallData(data)
+function compressLisData(data)
 {
 	for (var business in data) {
 	  if (data.hasOwnProperty(business)) {
 		var val = data[business];
-		if(!containsSmallObject(val.zip_code))
+		if(!containsLisObject(val.zip))
 		{
 			var zipCode = 
 			{
-				name: val.zip_code,
-			    sbe: parseInt(val.total_assistance)
+				name: val.zip,
+			    sbe: parseInt(1)
 			};
 			//console.log(zipCode.name);
 			zipCodes.push(zipCode);
@@ -33,17 +33,17 @@ function compressSmallData(data)
 		else
 		{
 			console.log("added to zip");
-			zipCodes[getSmallZipIndex(val.zip_code)].sbe = parseInt(zipCodes[getSmallZipIndex(val.zip_code)].sbe) + parseInt(val.total_assistance);
+			zipCodes[getLisZipIndex(val.zip)].sbe = parseInt(zipCodes[getLisZipIndex(val.zip)].sbe) + parseInt(1);
 		}
 		
 		//console.log(val.zip_code);
 	  }
 	}
 	
-	printSmallTestGraph1();
+	printLisTestGraph1();
 }
 
-function containsSmallObject(obj) {
+function containsLisObject(obj) {
     var i;
     for (i = 0; i < zipCodes.length; i++) {
 		//console.log(list[i].name);
@@ -55,7 +55,7 @@ function containsSmallObject(obj) {
     return false;
 }
 
-function getSmallZipIndex(zip)
+function getLisZipIndex(zip)
 {
 	for (var i = 0; i < zipCodes.length; i++) {
 		if(zipCodes[i].name === zip)
@@ -65,9 +65,9 @@ function getSmallZipIndex(zip)
 	}
 }
 
-function printSmallTestGraph1()
+function printLisTestGraph1()
 {
-	console.log("Printing small graph");
+	console.log("Printing license graph");
 	var chartdata = new Array();
 
             var height = 500,
@@ -77,11 +77,11 @@ function printSmallTestGraph1()
 			
 	for(var i = 0; i < 6; i++)
 	{
-		chartdata.push(zipCodes[i].sbe / 1000000);
+		chartdata.push(zipCodes[i].sbe / 100000);
 	}
 
   
-        d3.select('#bar-chart').append('svg')
+        d3.select('#bar-chart-license').append('svg')
             .attr('width', width)
             .attr('height', height)
             .style('background', '#dff0d8')
