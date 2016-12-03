@@ -10,7 +10,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 	<script src="javascripts/jquery-3.1.1.js"></script>
 	<script src="javascripts/main.js"></script>
+	<script src="javascripts/smallBusiness.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -33,22 +35,22 @@
           <h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About our project</h3>
 
+<div id="data"></div>
+<div id="bar-chart"></div>
 <p></p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More info</h3>
 
-<p></p>
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/gotoel/CTSkillsChallenge10/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
+          <a href="javascript:printTestGraph1();" id="btnTestGraph1" class="button">
+            <small>Graph</small>
+            Test graph
           </a>
-          <a href="https://github.com/gotoel/CTSkillsChallenge10/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
+          <a href="javascript:printTestGraph2();" id="btnTestGraph2" class="button">
+            <small>Graph</small>
+            Test graph 2
           </a>
         </aside>
       </div>
